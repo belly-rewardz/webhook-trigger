@@ -36,6 +36,7 @@ options {
             echo "hello world 11"
             sh "ls -lah"
             sh "pwd"
+            sh "pwd"
             }
         }
       }
