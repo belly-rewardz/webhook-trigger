@@ -37,6 +37,7 @@ options {
             sh "ls -lah"
             sh "pwd"
             sh "pwd"
+            sh "pwd || true"
             }
         }
       }
