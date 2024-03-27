@@ -33,6 +33,8 @@ options {
             echo "hello world 8"
             echo "hello world 9"
             echo "hello world 10"
+            sh "ls -lah"
+            sh "pwd"
             }
         }
       }
