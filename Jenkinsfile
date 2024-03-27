@@ -34,7 +34,7 @@ options {
             echo "hello world 9"
             echo "hello world 10"
             sh "ls -lah"
-            sh "pwd"
+            sh "pwd || true"
             }
         }
       }
