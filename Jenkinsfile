@@ -33,6 +33,7 @@ options {
     stage('Echo') {
       steps {
         container('node') {
+          setBuildStatus("Build in progress", "PENDING");
           script {
             echo "hello world 2"
             sh "ls -lah"
