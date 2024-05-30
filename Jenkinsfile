@@ -10,19 +10,7 @@ void setBuildStatus(String message, String state) {
 
 pipeline {
   agent {
-    kubernetes {
-      yaml '''
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: node
-    image: node:14.17.2
-    command: ["/bin/sh"]
-    args: ["-c", "while true; do echo hello; sleep 10;done"]
-  serviceAccountName: analytics-sa
-'''
-      }
+        label 'master'
     }
 options {
   ansiColor('xterm')
@@ -32,14 +20,12 @@ options {
   stages {
     stage('Echo') {
       steps {
-        container('node') {
-          setBuildStatus("Build in progress", "PENDING");
-          script {
-            echo "hello world"
-            sh "ls -lah"
-            sh "pwd || true"
-            }
-        }
+        setBuildStatus("Build in progress", "PENDING");
+        script {
+          echo "hello world"
+          sh "ls -lah"
+          sh "pwd || true"
+          }
       }
     }
   }
