@@ -35,7 +35,7 @@ options {
         container('node') {
           setBuildStatus("Build in progress", "PENDING");
           script {
-            echo "hello world 2"
+            echo "hello world"
             sh "ls -lah"
             sh "pwd || true"
             }
