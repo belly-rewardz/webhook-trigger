@@ -1,18 +1,16 @@
+// void setBuildStatus(String message, String state) {
+//   step([
+//       $class: "GitHubCommitStatusSetter",
+//       reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/belly-rewardz/webhook-trigger"],
+//       contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+//       errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+//       statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
+//   ]);
+// }
+
 pipeline {
   agent {
-    kubernetes {
-      yaml '''
-apiVersion: v1
-kind: Pod
-spec:
-  containers:
-  - name: node
-    image: node:14.17.2
-    command: ["/bin/sh"]
-    args: ["-c", "while true; do echo hello; sleep 10;done"]
-  serviceAccountName: analytics-sa
-'''
-      }
+        label 'master'
     }
 options {
   ansiColor('xterm')
@@ -22,20 +20,21 @@ options {
   stages {
     stage('Echo') {
       steps {
-        container('node') {
-          script {
-            echo "hello world 2"
-            echo "hello world 3"
-            echo "hello world 4"
-            echo "hello world 5"
-            echo "hello world 6"
-            echo "hello world 7"
-            echo "hello world 8"
-            echo "hello world 9"
-            echo "hello world 10"
-            }
-        }
+        // setBuildStatus("Build in progress", "PENDING");
+        script {
+          echo "hello world"
+          sh "ls -lah"
+          sh "pwd || true"
+          }
       }
     }
   }
+  // post {
+  //   success {
+  //       setBuildStatus("Build succeeded", "SUCCESS");
+  //   }
+  //   failure {
+  //       setBuildStatus("Build failed", "FAILURE");
+  //   }
+  // }
 }
