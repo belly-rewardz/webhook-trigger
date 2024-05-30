@@ -25,18 +25,7 @@ options {
         container('node') {
           script {
             echo "hello world 2"
-            echo "hello world 3"
-            echo "hello world 4"
-            echo "hello world 5"
-            echo "hello world 6"
-            echo "hello world 7"
-            echo "hello world 8"
-            echo "hello world 9"
-            echo "hello world 10"
-            echo "hello world 11"
             sh "ls -lah"
-            sh "pwd || true"
-            sh "pwd || true"
             sh "pwd || true"
             }
         }
